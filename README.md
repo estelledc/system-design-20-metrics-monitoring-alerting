@@ -10,16 +10,18 @@ the fixed secondary chapter.
 
 ## Current phase
 
-Closed-book contract only. Metric model, source comparison, primary references, storage, implementation, tests, benchmark, public
-remote, CI, deployment, SLA, and external acceptance are all pending.
+Closed-book analysis and source/ADR review are frozen. The selected v0.1 is a deliberately small PostgreSQL 17 authority for
+bounded synthetic gauges, stable ingest/query/evaluation receipts, pending/firing/resolved incidents, versioned silence receipts,
+and a fenced notification outbox. Implementation, tests, crash smoke, benchmark, public remote, and public CI are pending.
 
-Candidate concerns include bounded series identity/cardinality, stable ingest retries, event time and late data, query snapshots,
-rule generation/evaluation slots, pending/firing/resolved incidents, missing-data policy, silence/inhibition, notification outbox
-recovery, and evidence separation. They are hypotheses until source review and executable validation.
+This is not a Prometheus, OpenTelemetry, Remote Write, Alertmanager, Grafana, PagerDuty, email, SMS, chat, or production time-series
+implementation. The source comparison explains why unsupported metric types and external outcomes are rejected instead of guessed.
 
 ## Read first
 
 - [Closed-book contract](docs/closed-book-contract.md)
+- [Research log and source comparison](docs/research-log.md)
+- [ADR 0001: PostgreSQL snapshot evaluations and a fenced notification outbox](docs/adr/0001-postgres-snapshot-evaluations-and-fenced-notification-outbox.md)
 - [Security policy](SECURITY.md)
 
 ## Evidence boundary
