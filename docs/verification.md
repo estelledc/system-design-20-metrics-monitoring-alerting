@@ -1,5 +1,18 @@
 # Verification
 
+## Identity-safe history
+
+The identity-safe rewrite preserved every existing tree, message, and timestamp while mapping the four commits in order:
+
+- `67b7dc41607c6a76ab83828f4d6d5113e8da7ece` → `f114d62dee11946d67073da488e0a9a383f4e1f7`
+- `aff311d789cf2023e6a948375705deb13b89758f` → `04327aa8fdc2915152d1b6fdf4f817ce9c51c39d`
+- `3ad1dc5f4276db252cf090dc244723bc9186d2fe` → `d5fd03bc984c841ed6318ab74729b9cbfb095b8a`
+- `509ded88288db48548463ab4ac2188df113f3dbb` → `168e46f9c59ea528fa0ded7e6898876cbeea6043`
+
+Current reachable `main` uses the repository owner's GitHub noreply identity. Rewritten baseline
+`168e46f9c59ea528fa0ded7e6898876cbeea6043` passed [CI run 32227754117](https://github.com/estelledc/system-design-20-metrics-monitoring-alerting/actions/runs/32227754117)
+on Node 22, 24, and 26 with PostgreSQL 17.11 and the full quality gate.
+
 ## Evidence ladder
 
 | Gate | Proves | Does not prove |
@@ -83,10 +96,12 @@ compare vendors or extrapolate beyond the fixture.
 Excluded: HTTP ingestion/query hop, TLS, compression, replication, failover, compaction, rollup, real cardinality churn, concurrent
 dashboard/alert load, notification provider network, deployment, production cost, availability, and SLA.
 
-## Public implementation CI receipt
+## Historical public implementation CI receipt
 
 [GitHub Actions run 32197886283](https://github.com/estelledc/system-design-20-metrics-monitoring-alerting/actions/runs/32197886283)
-completed successfully for implementation commit `3ad1dc5f4276db252cf090dc244723bc9186d2fe` on 2026-08-19 Asia/Shanghai.
+completed successfully for pre-rewrite implementation object `3ad1dc5f4276db252cf090dc244723bc9186d2fe` on 2026-08-19
+Asia/Shanghai. Its tree-equivalent commit in current reachable history is `d5fd03bc984c841ed6318ab74729b9cbfb095b8a`; the historical
+run remains bound to the old commit object.
 
 All three jobs used the digest-pinned PostgreSQL `17.11` service and ran repository policy, 15 pure tests, dependency audit, 10
 PostgreSQL tests, three-`SIGKILL` smoke, and the bounded benchmark:
